@@ -27,10 +27,12 @@ def main():
             #checks is mouse button is pressed
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pass
-                
-        board.draw_squares(WIN)
+
+        #draws the board        
+        board.draw(WIN)
         pygame.display.update()
 
     pygame.quit()
 
+#runs the main function
 main()

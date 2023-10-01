@@ -1,8 +1,9 @@
-from .constants import RED, WHITE, SQUARE_SIZE, GREY
+from .constants import RED, SQUARE_SIZE, GREY
 import pygame
 
 class Piece:
-    PADDING = 10
+    #PADDING determines piece size bidder padding means smaller piece
+    PADDING = 15
     OUTLINE = 2
 
     def __init__(self,row,col,colour):
