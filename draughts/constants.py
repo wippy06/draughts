@@ -19,3 +19,4 @@ BLUE = (0,0,255)
 BEIGE = (252,227,173)
 BROWN = (107, 34, 0)
 
+CROWN = pygame.transform.scale(pygame.image.load("draughts/assets/crown.png"),(28,16))
