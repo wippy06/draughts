@@ -1,5 +1,5 @@
 import pygame
-from draughts.constants import WIDTH,HEIGHT, SQUARE_SIZE
+from draughts.constants import WIDTH,HEIGHT, SQUARE_SIZE, RED
 from draughts.board import Board
 from draughts.game import Game
 
