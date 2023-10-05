@@ -24,7 +24,7 @@ class Board:
         self.board[piece.row][piece.col], self.board[row][col] = self.board[row][col], self.board[piece.row][piece.col]
         piece.move(row,col)
 
-        if row == ROWS or row==0:
+        if row == ROWS-1 or row==0:
             piece.make_king()
             if piece.colour == BLACK:
                 self.black_kings +=1
@@ -72,6 +72,19 @@ class Board:
     def remove(self,pieces):
         for piece in pieces:
             self.board[piece.row][piece.col]=0
+            if piece!= 0:
+                if piece.colour ==RED:
+                    self.red_left -=1
+                else:
+                    self.black_left -=1
+
+    def winner(self):
+        if self.red_left<=0:
+            return BLACK
+        elif self.black_left<=0:
+            return RED
+        else:
+            return None
 
     def get_valid_moves(self, piece):
         moves = {}
