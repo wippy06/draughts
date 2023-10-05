@@ -68,6 +68,11 @@ class Board:
                     #piece is drawn if the space in the array is not 0
                     piece.draw(win)
 
+    
+    def remove(self,pieces):
+        for piece in pieces:
+            self.board[piece.row][piece.col]=0
+
     def get_valid_moves(self, piece):
         moves = {}
         left = piece.col-1
@@ -75,12 +80,12 @@ class Board:
         row = piece.row
 
         if piece.colour == RED or piece.king:
-            moves.update(self._traverse_left(row-1, max(row-3,-1),-1,piece.colour,left))
-            moves.update(self._traverse_right(row-1, max(row-3,-1),-1,piece.colour,right))
+            moves.update(self._traverse_left(row -1, max(row-3, -1), -1, piece.colour, left))
+            moves.update(self._traverse_right(row -1, max(row-3, -1), -1, piece.colour, right))
 
         if piece.colour == BLACK or piece.king:
-            moves.update(self._traverse_left(row+1, min(row-3, ROWS),1,piece.colour,left))
-            moves.update(self._traverse_right(row+1, min(row-3, ROWS),1,piece.colour,right))
+            moves.update(self._traverse_left(row +1, min(row+3, ROWS), 1, piece.colour, left))
+            moves.update(self._traverse_right(row +1, min(row+3, ROWS), 1, piece.colour, right))
 
         return moves
 
