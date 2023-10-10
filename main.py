@@ -1,6 +1,5 @@
 import pygame
-from draughts.constants import WIDTH,HEIGHT, SQUARE_SIZE, RED
-from draughts.board import Board
+from draughts.constants import WIDTH,HEIGHT, SQUARE_SIZE
 from draughts.game import Game
 
 #WIDTH, HEIGHT = 800,800
