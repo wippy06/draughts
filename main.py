@@ -2,7 +2,6 @@ import pygame
 from draughts.constants import WIDTH,HEIGHT, SQUARE_SIZE
 from draughts.game import Game
 
-#WIDTH, HEIGHT = 800,800
 
 FPS = 60
 
