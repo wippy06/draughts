@@ -49,7 +49,7 @@ class Board:
                         self.board[row].append(Piece(row,col, BLACK))
                     
                     #adding red pieces to array if in the last 3 rows
-                    elif row>4:
+                    elif row>ROWS-4:
                         self.board[row].append(Piece(row,col, RED))
                     
                 # else adds 0s to the array
