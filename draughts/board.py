@@ -20,6 +20,18 @@ class Board:
             for col in range (row % 2, ROWS, 2):
                 pygame.draw.rect(win, BEIGE, (row*SQUARE_SIZE, col*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
 
+    def evaluate(self):
+        #0.5 is the weighting of the scoring
+        return self.black_left - self.red_left + (self.black_kings - self.red_kings)*0.5
+
+    def get_all_pieces(self, colour):
+        pieces = []
+        for row in self.board:
+            for piece in row:
+                if piece!= 0 and piece.colour == colour:
+                    pieces.append(piece)
+        return pieces    
+
     def move(self, piece, row, col):
         self.board[piece.row][piece.col], self.board[row][col] = self.board[row][col], self.board[piece.row][piece.col]
         piece.move(row,col)
@@ -80,12 +92,27 @@ class Board:
                     self.black_left -=1
 
     def winner(self):
+        red_movable = self.movable(RED)
+        black_movable = self.movable(BLACK)
+
         if self.red_left<=0:
             return BLACK
         elif self.black_left<=0:
             return RED
+        elif red_movable ==False:
+            return BLACK
+        elif black_movable ==False:
+            return RED
         else:
             return None
+
+    def movable(self, colour):
+        movable = False
+        for piece in self.get_all_pieces(colour):
+            if self.get_valid_moves(piece):
+                movable = True
+                break
+        return movable
 
     def get_valid_moves(self, piece):
         moves = {}
