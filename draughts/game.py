@@ -1,5 +1,5 @@
 import pygame
-from .constants import RED, BLACK, BLUE, SQUARE_SIZE
+from .constants import RED, BLACK, BLUE, SQUARE_SIZE, PLAYER
 from .board import Board
 
 class Game:
@@ -71,5 +71,10 @@ class Game:
         return self.board
     
     def ai_move(self,board):
-        self.board = board
-        self.change_turn()
+        if self.board.board != board.board:
+            self.board = board
+            self.change_turn()
+            return True
+
+        else:
+            return False
