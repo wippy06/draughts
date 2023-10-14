@@ -1,5 +1,5 @@
 import pygame
-from draughts.constants import WIDTH,HEIGHT, SQUARE_SIZE, AI, DEPTH, PLAYER
+from draughts.constants import WIDTH,HEIGHT, SQUARE_SIZE, AI, DEPTH, AI_ON
 from draughts.game import Game
 from minimax.algorithm import minimax
 
@@ -25,7 +25,7 @@ def main():
     while run:
         clock.tick(FPS)
 
-        if game.turn == AI:
+        if game.turn == AI and AI_ON:
             new_board = minimax(game.get_board(), DEPTH, AI, game)
             game.ai_move(new_board[1])
         

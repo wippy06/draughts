@@ -7,10 +7,10 @@ def minimax(position, depth, max_player, game):
     #max_player checks if ai wants to maximise sore or minimise score
     #game is the object game
 
-    if depth == 0 or position.winner() != None:
+    if depth == 0 or position.winner(AI) != None or position.winner(PLAYER) != None:
         return position.evaluate(), position
     
-    if max_player == AI:
+    if max_player:
         maxEval = float("-inf")
         best_move = None
         for move in get_all_moves(position, AI, game):

@@ -1,5 +1,5 @@
 import pygame
-from .constants import BROWN, ROWS, BEIGE, SQUARE_SIZE, COLS, BLACK, RED
+from .constants import BROWN, ROWS, BEIGE, SQUARE_SIZE, COLS, BLACK, RED, AI
 from .piece import Piece
 
 class Board:
@@ -24,7 +24,11 @@ class Board:
 
     def evaluate(self):
         #0.5 is the weighting of the scoring
-        return self.black_left - self.red_left + (self.black_kings - self.red_kings)*0.5
+        if AI == BLACK:    
+            return self.black_left - self.red_left + (self.black_kings - self.red_kings)*0.5
+        else:
+            return self.red_left - self.black_left + (self.red_kings - self.black_kings)*0.5
+
 
     def get_all_pieces(self, colour):
         pieces = []
@@ -45,6 +49,7 @@ class Board:
                     self.black_kings +=1
                 else:
                     self.red_kings +=1
+                print(self.black_kings)
 
     def get_piece(self, row, col):
         return self.board[row][col]
@@ -93,7 +98,7 @@ class Board:
                 else:
                     self.black_left -=1
 
-    def winner(self):
+    def winner(self, turn):
         red_movable = self.movable(RED)
         black_movable = self.movable(BLACK)
 
@@ -101,9 +106,9 @@ class Board:
             return BLACK
         elif self.black_left<=0:
             return RED
-        elif red_movable == False:
+        elif red_movable == False and turn == RED:
             return BLACK
-        elif black_movable == False:
+        elif black_movable == False and turn == BLACK:
             return RED
         else:
             return None
