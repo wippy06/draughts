@@ -8,6 +8,8 @@ class Board:
         self.black_left = self.red_left = 12
         self.black_kings = self.red_kings = 0
 
+        #self.game = game
+
         #runs the create_board function on start up to set pieces
         self.create_board()
 
@@ -99,9 +101,9 @@ class Board:
             return BLACK
         elif self.black_left<=0:
             return RED
-        elif red_movable ==False:
+        elif red_movable == False:
             return BLACK
-        elif black_movable ==False:
+        elif black_movable == False:
             return RED
         else:
             return None

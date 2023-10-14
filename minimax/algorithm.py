@@ -1,6 +1,5 @@
 from copy import deepcopy
 from draughts.constants import PLAYER, AI
-import pygame
 
 def minimax(position, depth, max_player, game):
     #position is an object
@@ -11,7 +10,7 @@ def minimax(position, depth, max_player, game):
     if depth == 0 or position.winner() != None:
         return position.evaluate(), position
     
-    if max_player:
+    if max_player == AI:
         maxEval = float("-inf")
         best_move = None
         for move in get_all_moves(position, AI, game):

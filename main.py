@@ -1,5 +1,5 @@
 import pygame
-from draughts.constants import WIDTH,HEIGHT, SQUARE_SIZE, AI, DEPTH
+from draughts.constants import WIDTH,HEIGHT, SQUARE_SIZE, AI, DEPTH, PLAYER
 from draughts.game import Game
 from minimax.algorithm import minimax
 

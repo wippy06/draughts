@@ -21,6 +21,6 @@ BROWN = (107, 34, 0)
 CROWN = pygame.transform.scale(pygame.image.load("draughts/assets/crown.png"),(28,16))
 
 #AI
-AI = BLACK
-PLAYER = RED
+AI = RED
+PLAYER = BLACK
 DEPTH = 3
