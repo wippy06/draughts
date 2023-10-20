@@ -106,13 +106,13 @@ class Board:
         black_movable = self.movable(BLACK)
 
         if self.red_left<=0:
-            return BLACK
+            return "black wins"
         elif self.black_left<=0:
-            return RED
+            return "red wins"
         elif red_movable == False and turn == RED:
-            return BLACK
+            return "black wins"
         elif black_movable == False and turn == BLACK:
-            return RED
+            return "red wins"
         else:
             return None
 
