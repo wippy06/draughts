@@ -26,10 +26,8 @@ class Board:
         #0.5 is the weighting of the scoring
         if AI == BLACK:    
             return self.black_left - self.red_left + (self.black_kings - self.red_kings)*0.5
-            #return self.black_left - self.red_left
         else:
             return self.red_left - self.black_left + (self.red_kings - self.black_kings)*0.5
-            #return self.black_left - self.red_left
 
 
     def get_all_pieces(self, colour):
