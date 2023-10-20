@@ -26,8 +26,10 @@ class Board:
         #0.5 is the weighting of the scoring
         if AI == BLACK:    
             return self.black_left - self.red_left + (self.black_kings - self.red_kings)*0.5
+            #return self.black_left - self.red_left
         else:
             return self.red_left - self.black_left + (self.red_kings - self.black_kings)*0.5
+            #return self.black_left - self.red_left
 
 
     def get_all_pieces(self, colour):
@@ -42,14 +44,13 @@ class Board:
         self.board[piece.row][piece.col], self.board[row][col] = self.board[row][col], self.board[piece.row][piece.col]
         piece.move(row,col)
 
-        if row == ROWS-1 or row==0:
-            piece.make_king()
+        if row == ROWS-1 or row == 0:
             if piece.king == False:
                 if piece.colour == BLACK:
                     self.black_kings +=1
-                else:
+                elif piece.colour == RED:
                     self.red_kings +=1
-                print(self.black_kings)
+            piece.make_king()
 
     def get_piece(self, row, col):
         return self.board[row][col]
@@ -95,8 +96,12 @@ class Board:
             if piece!= 0:
                 if piece.colour ==RED:
                     self.red_left -=1
+                    if piece.king == True:
+                        self.red_kings-=1
                 else:
                     self.black_left -=1
+                    if piece.king == True:
+                        self.black_kings-=1
 
     def winner(self, turn):
         red_movable = self.movable(RED)
@@ -170,7 +175,7 @@ class Board:
                 last = [current]
 
             left -=1
-        
+
         return moves
 
     def _traverse_right(self, start, stop, step, colour, right, skipped = []):
