@@ -5,7 +5,7 @@ from .piece import Piece
 class Board:
     def __init__(self):
         self.board = []
-        self.black_left = self.red_left = 12
+        self.black_left = self.red_left = COLS//2*3
         self.black_kings = self.red_kings = 0
 
         #self.game = game

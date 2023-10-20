@@ -28,6 +28,7 @@ def main():
         if game.turn == AI and AI_ON:
             new_board = minimax(game.get_board(), DEPTH, AI, game)
             run = game.ai_move(new_board[1])
+            
         
         if game.winner()!=None:
             print(game.winner())

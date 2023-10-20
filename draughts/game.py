@@ -55,9 +55,10 @@ class Game:
         return True
 
     def draw_valid_moves(self, moves):
+        radius = (SQUARE_SIZE//2)*0.30
         for move in moves:
             row, col = move
-            pygame.draw.circle(self.win, BLUE, (col * SQUARE_SIZE + SQUARE_SIZE//2, row * SQUARE_SIZE + SQUARE_SIZE//2), 15)
+            pygame.draw.circle(self.win, BLUE, (col * SQUARE_SIZE + SQUARE_SIZE//2, row * SQUARE_SIZE + SQUARE_SIZE//2), radius)
 
     def change_turn(self):
         self.valid_moves={}
