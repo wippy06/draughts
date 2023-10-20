@@ -1,5 +1,5 @@
 import pygame
-from .constants import BROWN, ROWS, BEIGE, SQUARE_SIZE, COLS, BLACK, RED, AI
+from .constants import BROWN, ROWS, BEIGE, SQUARE_SIZE, COLS, BLACK, RED, AI, WEIGHT
 from .piece import Piece
 
 class Board:
@@ -23,12 +23,10 @@ class Board:
                 pygame.draw.rect(win, BEIGE, (row*SQUARE_SIZE, col*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
 
     def evaluate(self):
-        #0.5 is the weighting of the scoring
         if AI == BLACK:    
-            return self.black_left - self.red_left + (self.black_kings - self.red_kings)*0.5
+            return (self.black_left - self.red_left)*WEIGHT[0] + (self.black_kings - self.red_kings)*WEIGHT[1]
         else:
-            return self.red_left - self.black_left + (self.red_kings - self.black_kings)*0.5
-
+            return (self.red_left - self.black_left)*WEIGHT[0] + (self.red_kings - self.black_kings)*WEIGHT[1]
 
     def get_all_pieces(self, colour):
         pieces = []

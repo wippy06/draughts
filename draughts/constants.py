@@ -27,3 +27,4 @@ AI_ON = True
 AI = BLACK
 PLAYER = RED
 DEPTH = 3
+WEIGHT = [1,0.5]
