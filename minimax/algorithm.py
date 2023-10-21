@@ -1,20 +1,25 @@
 from copy import deepcopy
 from draughts.constants import PLAYER, AI
 
-def minimax(position, depth, max_player):
+def minimax(position, depth, max_player, alpha, beta, weight):
     #position is an object
     #depth is an int to show how far to go
     #max_player checks if ai wants to maximise sore or minimise score
 
     if depth == 0 or position.winner(AI) != None or position.winner(PLAYER) != None:
-        return position.evaluate(), position
+        return position.evaluate(weight), position
     
     if max_player:
         maxEval = float("-inf")
         best_move = None
         for move in get_all_moves(position, AI):
-            evaluation = minimax(move, depth-1, False)[0]
+            evaluation = minimax(move, depth-1, False, alpha, beta, weight)[0]
             maxEval = max(maxEval,evaluation)
+
+            alpha = max( alpha, maxEval)
+            if beta <= alpha:
+                break
+
             if maxEval == evaluation:
                 best_move = move
 
@@ -24,8 +29,13 @@ def minimax(position, depth, max_player):
         minEval = float("inf")
         best_move = None
         for move in get_all_moves(position, PLAYER):
-            evaluation = minimax(move, depth-1, True)[0]
+            evaluation = minimax(move, depth-1, True, alpha, beta, weight)[0]
             minEval = min(minEval,evaluation)
+
+            beta = min( beta, minEval)
+            if beta <= alpha:
+                break
+
             if minEval == evaluation:
                 best_move = move
 
