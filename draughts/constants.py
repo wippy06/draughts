@@ -28,5 +28,17 @@ AI_VS_AI = True
 AI = RED
 PLAYER = BLACK
 DEPTH = 3
-WEIGHT0 = [0.5,2]
-WEIGHT1 = [0.5,2]
+    #WEIGHT0 is AI, WEIGHT1 is AI which is playing for player
+WEIGHT0 = [2,5,5]
+WEIGHT1 = [6,7,1]
+
+PIECESQUARETABLE = [
+    [0,4,0,4,0,4,0,4],
+    [4,0,3,0,3,0,3,0],
+    [0,3,0,2,0,2,0,4],
+    [4,0,2,0,1,0,3,0],
+    [0,3,0,1,0,2,0,4],
+    [4,0,2,0,2,0,3,0],
+    [0,3,0,3,0,3,0,4],
+    [4,0,4,0,4,0,4,0]
+]

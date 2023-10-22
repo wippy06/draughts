@@ -26,7 +26,7 @@ def main():
         clock.tick(FPS)
 
         if game.turn == AI and AI_ON:
-            new_board = minimax(game.get_board(), DEPTH, AI, float("-inf"), float("inf"), WEIGHT0)
+            new_board = minimax(game.get_board(), DEPTH, True, float("-inf"), float("inf"), WEIGHT0)
             game.ai_move(new_board[1])
 
         game.update()

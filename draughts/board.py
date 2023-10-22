@@ -1,5 +1,5 @@
 import pygame
-from .constants import BROWN, ROWS, BEIGE, SQUARE_SIZE, COLS, BLACK, RED, AI
+from .constants import BROWN, ROWS, BEIGE, SQUARE_SIZE, COLS, BLACK, RED, AI, PIECESQUARETABLE
 from .piece import Piece
 
 class Board:
@@ -24,9 +24,20 @@ class Board:
 
     def evaluate(self, weight):
         if AI == BLACK:  
-            return (self.black_left - self.red_left)*weight[0] + (self.black_kings - self.red_kings)*weight[1]
+            return (self.black_left - self.red_left)*weight[0] + (self.black_kings - self.red_kings)*weight[1] + (self.pieceSquareTable(BLACK) - self.pieceSquareTable(RED))*weight[2]
         else:
-            return (self.red_left - self.black_left)*weight[0] + (self.red_kings - self.black_kings)*weight[1]
+            return (self.red_left - self.black_left)*weight[0] + (self.red_kings - self.black_kings)*weight[1] + (self.pieceSquareTable(RED) - self.pieceSquareTable(BLACK))*weight[2]
+        
+    def pieceSquareTable(self, colour):
+        value = 0
+        for lines in self.board:
+            for piece in lines:
+                if piece != 0 and piece.colour == colour:
+                    row = piece.row
+                    col = piece.col
+                    value += PIECESQUARETABLE[row][col]
+
+        return value
 
     def get_all_pieces(self, colour):
         pieces = []
