@@ -8,28 +8,27 @@ ROWS = COLS = 8
 SQUARE_SIZE = WIDTH//COLS
 
 #RGB colour constants
-#Pieces
+    #Pieces
 RED = (255, 0, 0)
-BLACK = (0,0,0)
+BLACK = (0,0,170)
     #outline
-GREY = (128,128,128)
+GREY = (0,0,0)
     #potential movement
-BLUE = (0,0,255)
-
-#checker board
+BLUE = (0,200,0)
+    #checker board
 BEIGE = (252,227,173)
 BROWN = (107, 34, 0)
 
 CROWN = pygame.transform.scale(pygame.image.load("draughts/assets/crown.png"),(SQUARE_SIZE*0.28,SQUARE_SIZE*0.16))
 
 #AI
-AI_ON = True
-AI_VS_AI = True
-AI = RED
-PLAYER = BLACK
+AI_ON = False
+AI_VS_AI = False
+AI = BLACK
+PLAYER = RED
 DEPTH = 3
     #WEIGHT0 is AI, WEIGHT1 is AI which is playing for player
-WEIGHT0 = [2,5,5]
+WEIGHT0 = [6,7,1]
 WEIGHT1 = [6,7,1]
 
 PIECESQUARETABLE = [

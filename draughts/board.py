@@ -22,12 +22,16 @@ class Board:
             for col in range (row % 2, ROWS, 2):
                 pygame.draw.rect(win, BEIGE, (row*SQUARE_SIZE, col*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
 
+    """
     def evaluate(self, weight):
         if AI == BLACK:  
             return (self.black_left - self.red_left)*weight[0] + (self.black_kings - self.red_kings)*weight[1] + (self.pieceSquareTable(BLACK) - self.pieceSquareTable(RED))*weight[2]
         else:
             return (self.red_left - self.black_left)*weight[0] + (self.red_kings - self.black_kings)*weight[1] + (self.pieceSquareTable(RED) - self.pieceSquareTable(BLACK))*weight[2]
-        
+    """
+    def evaluate(self, weight):
+        return (self.black_left - self.red_left)*weight[0] + (self.black_kings - self.red_kings)*weight[1] + (self.pieceSquareTable(BLACK) - self.pieceSquareTable(RED))*weight[2]
+
     def pieceSquareTable(self, colour):
         value = 0
         for lines in self.board:

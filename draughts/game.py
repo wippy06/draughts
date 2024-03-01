@@ -21,9 +21,6 @@ class Game:
     def winner(self):
         return self.board.winner(self.turn)
 
-    def reset(self):
-        self._init()
-
     def select(self,row,col):
         #if something is selected try to move unless selection is invalid
         if self.selected:

@@ -7,13 +7,14 @@ def minimax(position, depth, max_player, alpha, beta, weight):
     #max_player checks if ai wants to maximise sore or minimise score
 
     if depth == 0 or position.winner(AI) != None or position.winner(PLAYER) != None:
-        return position.evaluate(weight), position
+        return position
+
+    best_move = position
     
     if max_player:
         maxEval = float("-inf")
-        best_move = None
         for move in get_all_moves(position, AI):
-            evaluation = minimax(move, depth-1, False, alpha, beta, weight)[0]
+            evaluation = minimax(move, depth-1, False, alpha, beta, weight).evaluate(weight)
             maxEval = max(maxEval,evaluation)
 
             if maxEval == evaluation:
@@ -22,14 +23,11 @@ def minimax(position, depth, max_player, alpha, beta, weight):
             alpha = max( alpha, maxEval)
             if beta <= alpha:
                 break
-
-        return maxEval, best_move
     
     else:
         minEval = float("inf")
-        best_move = None
         for move in get_all_moves(position, PLAYER):
-            evaluation = minimax(move, depth-1, True, alpha, beta, weight)[0]
+            evaluation = minimax(move, depth-1, False, alpha, beta, weight).evaluate(weight)
             minEval = min(minEval,evaluation)
 
             if minEval == evaluation:
@@ -39,7 +37,7 @@ def minimax(position, depth, max_player, alpha, beta, weight):
             if beta <= alpha:
                 break
 
-        return minEval, best_move
+    return best_move
 
 def simulate_move(piece, move, board, skip):
     board.move(piece, move[0],move[1])

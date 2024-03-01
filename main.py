@@ -27,13 +27,13 @@ def main():
 
         if game.turn == AI and AI_ON:
             new_board = minimax(game.get_board(), DEPTH, True, float("-inf"), float("inf"), WEIGHT0)
-            game.ai_move(new_board[1])
+            game.ai_move(new_board)
 
         game.update()
 
         if game.turn == PLAYER and AI_VS_AI and AI_ON:
             new_board = minimax(game.get_board(), DEPTH, False, float("-inf"), float("inf"), WEIGHT1)
-            game.ai_move(new_board[1])        
+            game.ai_move(new_board)        
         
         if game.winner()!=None:
             print(game.winner())
@@ -49,7 +49,6 @@ def main():
                 pos = pygame.mouse.get_pos()
                 row, col = get_row_col_from_mouse(pos)
                 game.select(row, col)
-                print(game.board.evaluate(WEIGHT1))  
 
         #draws the board        
         game.update()
