@@ -1,60 +1,62 @@
 from copy import deepcopy
-from draughts.constants import PLAYER, AI
+from draughtsFolder.constants import DEPTH
 
-def minimax(position, depth, max_player, alpha, beta, weight):
-    #position is an object
-    #depth is an int to show how far to go
-    #max_player checks if ai wants to maximise sore or minimise score
+def minimax(position, depth, weight, maxPlayer, alpha, beta, transpositionTable):
 
-    if depth == 0 or position.winner(AI) != None or position.winner(PLAYER) != None:
+    positionKey = hash(str(position.board))
+
+    if positionKey in transpositionTable and depth != DEPTH:
+        return transpositionTable[positionKey]
+
+    if depth == 0 or position.winner() != None:
         return position
 
-    best_move = position
-    
-    if max_player:
-        maxEval = float("-inf")
-        for move in get_all_moves(position, AI):
-            evaluation = minimax(move, depth-1, False, alpha, beta, weight).evaluate(weight)
-            maxEval = max(maxEval,evaluation)
+    bestPos = None
 
-            if maxEval == evaluation:
-                best_move = move
+    if maxPlayer:
+        bestEval = float("-inf")
+        moves = get_all_moves(position)
+        for move in moves:
 
-            alpha = max( alpha, maxEval)
+            position.move(move)
+            evaluation = minimax(position, depth-1, weight, False, alpha, beta, transpositionTable).evaluate(weight)
+            bestEval = max(bestEval, evaluation)
+            if bestEval == evaluation:
+                bestPos = move
+            position.unmove()
+
+            alpha = max(alpha, bestEval)
             if beta <= alpha:
+                #print("max")
                 break
-    
-    else:
-        minEval = float("inf")
-        for move in get_all_moves(position, PLAYER):
-            evaluation = minimax(move, depth-1, False, alpha, beta, weight).evaluate(weight)
-            minEval = min(minEval,evaluation)
 
-            if minEval == evaluation:
-                best_move = move
             
-            beta = min( beta, minEval)
+    else:
+        bestEval = float("inf")
+        moves = get_all_moves(position)
+        for move in moves:
+
+            position.move(move)
+            evaluation = minimax(position, depth-1, weight, True, alpha, beta, transpositionTable).evaluate(weight)
+            bestEval = min(bestEval, evaluation)
+            if bestEval == evaluation:
+                bestPos = move
+            position.unmove()
+
+            beta = min(beta, bestEval)
             if beta <= alpha:
-                break
+                #print("min")
+                break 
 
-    return best_move
+    position.move(bestPos)
+    newPos = deepcopy(position)
+    position.unmove()
 
-def simulate_move(piece, move, board, skip):
-    board.move(piece, move[0],move[1])
-    if skip:
-        board.remove(skip)
+    if depth != 1:
+        transpositionTable[positionKey] = newPos
+    
+    return newPos
 
-    return board
-
-def get_all_moves(board,colour):
-    moves = []
-
-    for piece in board.get_all_pieces(colour):
-        valid_moves = board.get_valid_moves(piece)
-        for move,skip in valid_moves.items():
-            temp_board = deepcopy(board)
-            temp_piece = temp_board.get_piece(piece.row, piece.col)
-            new_board = simulate_move(temp_piece, move, temp_board, skip)
-            moves.append(new_board)
-
-    return moves
+def get_all_moves(board):
+    return board.get_all_valid_moves()
+ 

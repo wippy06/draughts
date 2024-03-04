@@ -19,13 +19,16 @@ BLUE = (0,200,0)
 BEIGE = (252,227,173)
 BROWN = (107, 34, 0)
 
-CROWN = pygame.transform.scale(pygame.image.load("draughts/assets/crown.png"),(SQUARE_SIZE*0.28,SQUARE_SIZE*0.16))
+CROWN = pygame.transform.scale(pygame.image.load("draughtsFolder/assets/crown.png"),(SQUARE_SIZE*0.28,SQUARE_SIZE*0.16))
 
 #AI
 AI_ON = False
 AI_VS_AI = False
-AI = BLACK
-PLAYER = RED
+
+#True == RED, False == Blue
+AI = False
+PLAYER = True
+
 DEPTH = 3
     #WEIGHT0 is AI, WEIGHT1 is AI which is playing for player
 WEIGHT0 = [6,7,1]
