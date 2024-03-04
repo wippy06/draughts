@@ -22,7 +22,7 @@ BROWN = (107, 34, 0)
 CROWN = pygame.transform.scale(pygame.image.load("draughtsFolder/assets/crown.png"),(SQUARE_SIZE*0.28,SQUARE_SIZE*0.16))
 
 #AI
-AI_ON = False
+AI_ON = True
 AI_VS_AI = False
 
 #True == RED, False == Blue
@@ -33,14 +33,3 @@ DEPTH = 3
     #WEIGHT0 is AI, WEIGHT1 is AI which is playing for player
 WEIGHT0 = [6,7,1]
 WEIGHT1 = [6,7,1]
-
-PIECESQUARETABLE = [
-    [0,4,0,4,0,4,0,4],
-    [4,0,3,0,3,0,3,0],
-    [0,3,0,2,0,2,0,4],
-    [4,0,2,0,1,0,3,0],
-    [0,3,0,1,0,2,0,4],
-    [4,0,2,0,2,0,3,0],
-    [0,3,0,3,0,3,0,4],
-    [4,0,4,0,4,0,4,0]
-]

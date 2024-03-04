@@ -42,7 +42,7 @@ def main():
 
         if game.board.get_turn() == AI and AI_ON and game.winner() == None:
             time_start = time.perf_counter()
-            new_board = minimax(game.get_board(), DEPTH, WEIGHT0, True, float("-inf"), float("+inf"), transposisitonTableBlack)
+            new_board = minimax(game.get_board(), DEPTH, WEIGHT0, True, float("-inf"), float("+inf"), transposisitonTableBlack, False)
             time_end = time.perf_counter()
             print(time_end-time_start)
 
@@ -51,7 +51,7 @@ def main():
 
         if game.board.get_turn() == PLAYER and AI_VS_AI and AI_ON and game.winner() == None:
             time_start = time.perf_counter()
-            new_board = minimax(game.get_board(), DEPTH, WEIGHT1, False, float("-inf"), float("+inf"), transposisitonTableWhite)
+            new_board = minimax(game.get_board(), DEPTH, WEIGHT1, False, float("-inf"), float("+inf"), transposisitonTableWhite, False)
             time_end = time.perf_counter()
             print(time_end - time_start)
 

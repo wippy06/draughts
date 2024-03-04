@@ -1,13 +1,14 @@
 import pygame
 import draughts
-from .constants import CROWN, BROWN, ROWS, BEIGE, SQUARE_SIZE, COLS, BLACK, RED, BLUE, AI, PIECESQUARETABLE, GREY
+from .constants import CROWN, BROWN, ROWS, BEIGE, SQUARE_SIZE, COLS, BLACK, RED, GREY
+from minimax.evaluate import evaluate
 
 class Board:
     def __init__(self):
         self.board = draughts.get_board("american")
         self.board2D = self.convert_to_2d()
-        #self.pieceListWhite = ["w","W"]
-        #self.pieceListBlack = ["b","B"]
+        self.pieceListWhite = ["w","W"]
+        self.pieceListBlack = ["b","B"]
     
     def convert_to_2d(self):
         board_str = str(self.board).replace(" ","").replace("\n","")
@@ -33,28 +34,6 @@ class Board:
     def unmove(self):
         self.board.pop()
         self.board2D = self.convert_to_2d()
-
-    """
-    def evaluate(self, weight):
-        if AI == BLACK:  
-            return (self.black_left - self.red_left)*weight[0] + (self.black_kings - self.red_kings)*weight[1] + (self.pieceSquareTable(BLACK) - self.pieceSquareTable(RED))*weight[2]
-        else:
-            return (self.red_left - self.black_left)*weight[0] + (self.red_kings - self.black_kings)*weight[1] + (self.pieceSquareTable(RED) - self.pieceSquareTable(BLACK))*weight[2]
-    """
-
-    def evaluate(self, weight):
-        return (self.black_left - self.red_left)*weight[0] + (self.black_kings - self.red_kings)*weight[1] + (self.pieceSquareTable(BLACK) - self.pieceSquareTable(RED))*weight[2]
-
-    def pieceSquareTable(self, colour):
-        value = 0
-        for lines in self.board:
-            for piece in lines:
-                if piece != 0 and piece.colour == colour:
-                    row = piece.row
-                    col = piece.col
-                    value += PIECESQUARETABLE[row][col]
-
-        return value
 
     def get_all_pieces(self, colour):
         pieces = []
@@ -110,7 +89,6 @@ class Board:
             for i in capture_moves:
                 for x in capture_moves:
                     if i.__repr__() in x.__repr__() and i.__repr__()!=x.__repr__():
-                        print(i)
                         capture_moves.remove(i)
                         break
             return capture_moves 
@@ -126,7 +104,6 @@ class Board:
         return moves
     
     def get_numPieces(self, type):
-        #type is piece representation eg "p" for black pawn
         list_of_cords = []
         for row in range(8):
             for col in range(8):
@@ -162,4 +139,7 @@ class Board:
                 move = x
                 break
         return move
+    
+    def evaluate(self, weight):
+        return evaluate(weight, self)
             

@@ -1,7 +1,7 @@
 from copy import deepcopy
 from draughtsFolder.constants import DEPTH
 
-def minimax(position, depth, weight, maxPlayer, alpha, beta, transpositionTable):
+def minimax(position, depth, weight, maxPlayer, alpha, beta, transpositionTable, captureCatch):
 
     positionKey = hash(str(position.board))
 
@@ -18,8 +18,12 @@ def minimax(position, depth, weight, maxPlayer, alpha, beta, transpositionTable)
         moves = get_all_moves(position)
         for move in moves:
 
+            if position.board.is_capture(move) or move.is_promotion == True and depth == 1 and captureCatch == False:
+                depth += 1
+                captureCatch = True
+
             position.move(move)
-            evaluation = minimax(position, depth-1, weight, False, alpha, beta, transpositionTable).evaluate(weight)
+            evaluation = minimax(position, depth-1, weight, False, alpha, beta, transpositionTable, captureCatch).evaluate(weight)
             bestEval = max(bestEval, evaluation)
             if bestEval == evaluation:
                 bestPos = move
@@ -36,8 +40,12 @@ def minimax(position, depth, weight, maxPlayer, alpha, beta, transpositionTable)
         moves = get_all_moves(position)
         for move in moves:
 
+            if position.board.is_capture(move) or move.is_promotion == True and depth == 1 and captureCatch == False:
+                depth += 1
+                captureCatch = True
+
             position.move(move)
-            evaluation = minimax(position, depth-1, weight, True, alpha, beta, transpositionTable).evaluate(weight)
+            evaluation = minimax(position, depth-1, weight, True, alpha, beta, transpositionTable, captureCatch).evaluate(weight)
             bestEval = min(bestEval, evaluation)
             if bestEval == evaluation:
                 bestPos = move
