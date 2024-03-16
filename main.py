@@ -60,6 +60,7 @@ def main():
         
         if game.winner()!=None:
             print(game.winner())
+            print(game.board.board)
             run = False
 
         for event in pygame.event.get():

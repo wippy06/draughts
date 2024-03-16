@@ -68,9 +68,9 @@ class Board:
 
     def winner(self):
         if self.board.game_over:
-            if self.board.result != "1-0":
+            if self.board.result == "1-0":
                 return "white wins"
-            elif self.board.result != "0-1":
+            elif self.board.result == "0-1":
                 return "black wins"
             else:
                 return "draw"
