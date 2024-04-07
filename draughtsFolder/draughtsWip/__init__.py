@@ -22,15 +22,9 @@ from typing import Literal, Optional, Type
 
 # create board type
 from draughts.boards.base import BaseBoard
-from draughts.boards.standard import Board as StandardBoard
-from draughts.boards.frisian import Board as FrisianBoard
 from draughts.boards.american import Board as AmericanBoard
-from draughts.server.server import Server
 
-
-def get_board(
-    variant: Literal["standard", "american", "frisian"], fen: Optional[str] = None
-) -> BaseBoard:
+def get_board(variant: Literal["standard", "american", "frisian"], fen: Optional[str] = None) -> BaseBoard:
     """
     Board factory method.
     - ``standard`` - standard draughts board
@@ -38,9 +32,9 @@ def get_board(
     - ``frisian`` - frisian draughts board
     """
 
+    print("get_board function")
+
     BOARDS: dict[str, Type[BaseBoard]] = {
-        "standard": StandardBoard,
-        "frisian": FrisianBoard,
         "american": AmericanBoard,
     }
     board_cls = BOARDS[variant]

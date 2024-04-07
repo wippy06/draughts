@@ -167,6 +167,7 @@ class BaseBoard(ABC):
                 self._moves_stack[-2].square_list
                 == self._moves_stack[-6].square_list
             ):
+                print("3-fold")
                 return True
         return False
 

@@ -2,9 +2,6 @@ from __future__ import annotations
 
 from typing import Generator
 
-from draughts.models import Figure
-
-
 class Move:
     """Move representation.
     End user should never interact with this class directly.
