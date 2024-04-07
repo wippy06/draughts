@@ -21,8 +21,8 @@ PDN parsing and writing. Supports multiple variants of game.
 from typing import Literal, Optional, Type
 
 # create board type
-from draughts.boards.base import BaseBoard
-from draughts.boards.american import Board as AmericanBoard
+from boards.base import BaseBoard
+from boards.american import Board as AmericanBoard
 
 def get_board(variant: Literal["standard", "american", "frisian"], fen: Optional[str] = None) -> BaseBoard:
     """

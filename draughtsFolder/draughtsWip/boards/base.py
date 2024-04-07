@@ -6,9 +6,9 @@ from typing import Generator, Literal, Optional
 from typing import Type
 import numpy as np
 
-from draughts.models import FIGURE_REPR, Color, Figure, SquareT
-from draughts.move import Move
-from draughts.utils import (
+from draughtsWip.models import FIGURE_REPR, Color, Figure, SquareT
+from draughtsWip.move import Move
+from draughtsWip.utils import (
     logger,
     get_diagonal_moves,
     get_short_diagonal_moves,
@@ -168,7 +168,7 @@ class BaseBoard(ABC):
                 == self._moves_stack[-6].square_list
             ):
                 print("3-fold")
-                return True
+                return False
         return False
 
     @abstractproperty

@@ -4,9 +4,9 @@ from typing import Generator
 
 import numpy as np
 
-from draughts.boards.base import BaseBoard
-from draughts.models import Color, Figure
-from draughts.move import Move
+from draughtsWip.boards.base import BaseBoard
+from draughtsWip.models import Color, Figure
+from draughtsWip.move import Move
 
 # fmt: off
 SQUARES = [B8, D8, F8, H8,
