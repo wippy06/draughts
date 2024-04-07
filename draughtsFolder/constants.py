@@ -23,13 +23,11 @@ CROWN = pygame.transform.scale(pygame.image.load("draughtsFolder/assets/crown.pn
 
 #AI
 AI_ON = True
-AI_VS_AI = False
+AI_VS_AI = True
 
 #True == RED, False == Blue
 AI = False
 PLAYER = True
 
 DEPTH = 3
-    #WEIGHT0 is AI, WEIGHT1 is AI which is playing for player
-WEIGHT0 = [6,7,1]
-WEIGHT1 = [6,7,1]
+LEARN = True
