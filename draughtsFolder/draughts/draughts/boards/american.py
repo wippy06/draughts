@@ -42,6 +42,7 @@ class Board(BaseBoard):
 
     @property
     def is_draw(self) -> bool:
+        print("ahh")
         return False
         #return self.is_threefold_repetition
 

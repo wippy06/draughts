@@ -1,5 +1,5 @@
 import pygame
-import draughts
+from .draughts import draughts
 from .constants import CROWN, BROWN, ROWS, BEIGE, SQUARE_SIZE, COLS, BLACK, RED, GREY
 from minimax.evaluate import evaluate
 
