@@ -1,11 +1,11 @@
 import pygame
-from .draughts import draughts
+import draughtsWip
 from .constants import CROWN, BROWN, ROWS, BEIGE, SQUARE_SIZE, COLS, BLACK, RED, GREY
 from minimax.evaluate import evaluate
 
 class Board:
     def __init__(self):
-        self.board = draughts.get_board("american")
+        self.board = draughtsWip.get_board("american")
         self.board2D = self.convert_to_2d()
         self.pieceListWhite = ["w","W"]
         self.pieceListBlack = ["b","B"]

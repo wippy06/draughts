@@ -163,6 +163,9 @@ class BaseBoard(ABC):
                 self._moves_stack[-1].square_list
                 == self._moves_stack[-5].square_list
                 == self._moves_stack[-9].square_list
+                and
+                self._moves_stack[-2].square_list
+                == self._moves_stack[-6].square_list
             ):
                 return True
         return False
