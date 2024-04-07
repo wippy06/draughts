@@ -4,9 +4,9 @@ from typing import Generator
 
 import numpy as np
 
-from draughtsWip.boards.base import BaseBoard
-from draughtsWip.models import Color, Figure
-from draughtsWip.move import Move
+from .base import BaseBoard
+from .models import Color, Figure
+from .move import Move
 
 # fmt: off
 SQUARES = [B8, D8, F8, H8,
@@ -42,9 +42,7 @@ class Board(BaseBoard):
 
     @property
     def is_draw(self) -> bool:
-        print("ahh")
-        return False
-        #return self.is_threefold_repetition
+        return self.is_threefold_repetition
 
     @property
     def legal_moves(self) -> Generator[Move, None, None]:
