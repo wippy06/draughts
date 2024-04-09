@@ -42,7 +42,39 @@ class Board(BaseBoard):
 
     @property
     def is_draw(self) -> bool:
-        return self.is_threefold_repetition
+        return (
+            self.is_threefold_repetition
+            or self.is_5_moves_rule
+            or self.is_16_moves_rule
+            or self.is_25_moves_rule
+        )
+
+    @property
+    def is_25_moves_rule(self) -> bool:
+        if self.halfmove_clock < 50:
+            return False
+        return True
+
+    @property
+    def is_16_moves_rule(self) -> bool:
+        if self.halfmove_clock < 32:
+            return False
+        if len(self._pos[self._pos != Figure.EMPTY]) > 4:
+            return False
+        if np.abs(self._pos).sum() < Figure.KING.value * 2 + Figure.MAN.value * 2:
+            return False
+        return True
+
+    @property
+    def is_5_moves_rule(self) -> bool:
+        # if count of pieces is not 3 or 4
+        if len(self._pos[self._pos != Figure.EMPTY]) > 3:
+            return False
+        if np.abs(self._pos).sum() < Figure.KING.value * 2 + Figure.MAN.value:
+            return False
+        if self.halfmove_clock < 10:
+            return False
+        return True
 
     @property
     def legal_moves(self) -> Generator[Move, None, None]:

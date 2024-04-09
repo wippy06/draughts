@@ -38,6 +38,7 @@ class Game:
         move = self.board.get_move(square, self.valid_moves)
         if self.selected and move in self.valid_moves:
             self.board.move(move)
+            self.board.moveCounter +=1
             self.valid_moves = []
         else:
             return False      

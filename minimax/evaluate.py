@@ -13,14 +13,10 @@ def evaluate(weight, board):
 
     for x in board.pieceListBlack:
         pieceSquareTable += piece_square_table(board,x)
-        if x == "k":
-            continue
         pieceValue += piece_value(board,x)
 
     for x in board.pieceListWhite:
         pieceSquareTable -= piece_square_table(board,x)
-        if x == "K":
-            continue
         pieceValue -= piece_value(board,x)
 
     return pieceValue*weight[0] + pieceSquareTable*weight[1]
@@ -30,8 +26,17 @@ def piece_square_table(board, type):
     pieces = board.get_numPieces(type)
     
     value = 0
-    for x in pieces:
-        value += PIECESQUARETABLE[x[0]][x[1]]
+    if type == "W" or type == "B":
+        for x in pieces:
+            value += PIECESQUARETABLEKINGS[x[0]][x[1]]
+    else:
+        if type == "w":
+            for x in pieces:
+                value += PIECESQUARETABLEBLACK[x[0]][x[1]]
+        else:
+            for x in pieces:
+                value += PIECESQUARETABLEWHITE[x[0]][x[1]]
+
 
     return value
 

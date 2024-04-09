@@ -52,6 +52,8 @@ def playGame(weight0, weight1):
             game.ai_move(new_board)
             game.update()
 
+            game.board.moveCounter +=1
+
             plyCount+=1
 
         if game.board.get_turn() == PLAYER and AI_VS_AI and AI_ON and game.winner() == None:
@@ -61,7 +63,9 @@ def playGame(weight0, weight1):
             print(time_end - time_start)
 
             game.ai_move(new_board)
-            game.update()  
+            game.update()
+
+            game.board.moveCounter +=1  
 
             plyCount+=1   
         

@@ -9,6 +9,7 @@ class Board:
         self.board2D = self.convert_to_2d()
         self.pieceListWhite = ["w","W"]
         self.pieceListBlack = ["b","B"]
+        self.moveCounter = 0
     
     def convert_to_2d(self):
         board_str = str(self.board).replace(" ","").replace("\n","")
@@ -35,13 +36,13 @@ class Board:
         self.board.pop()
         self.board2D = self.convert_to_2d()
 
-    def get_all_pieces(self, colour):
+    '''def get_all_pieces(self, colour):
         pieces = []
         for row in self.board:
             for piece in row:
                 if piece!= 0 and piece.colour == colour:
                     pieces.append(piece)
-        return pieces    
+        return pieces '''   
 
     def draw(self,win):
         #draws squares and pieces
