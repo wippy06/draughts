@@ -73,8 +73,8 @@ def playGame(weight0, weight1):
             print(game.winner())
             print(game.board.board)
             print(game.board.board.pdn)
-            run = False
-            return [game.winner(), plyCount]
+            #run = False
+            #return [game.winner(), plyCount]
 
         for event in pygame.event.get():
             
@@ -145,4 +145,4 @@ def main():
 if LEARN == True:
     main()
 else:
-    playGame([6,7,1], [6,7,1])
+    playGame([33,69],[33,69])

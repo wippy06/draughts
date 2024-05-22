@@ -9,10 +9,10 @@ SQUARE_SIZE = WIDTH//COLS
 
 #RGB colour constants
     #Pieces
-RED = (255, 0, 0)
-BLACK = (0,0,170)
+RED = (255,255,255)
+BLACK = (0, 0, 0)
     #outline
-GREY = (0,0,0)
+GREY = (128,128,128)
     #potential movement
 BLUE = (0,200,0)
     #checker board
@@ -23,11 +23,11 @@ CROWN = pygame.transform.scale(pygame.image.load("draughtsFolder/assets/crown.pn
 
 #AI
 AI_ON = True
-AI_VS_AI = True
+AI_VS_AI = False
 
 #True == RED, False == Blue
 AI = False
 PLAYER = True
 
 DEPTH = 3
-LEARN = True
+LEARN = False
